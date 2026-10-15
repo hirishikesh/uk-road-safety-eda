@@ -1,0 +1,193 @@
+table fact_casualties
+	lineageTag: 677fc1c8-28fa-505c-bbb1-16c9bd1dda82
+
+	measure 'Casualties' = COUNTROWS ( fact_casualties )
+		formatString: #,0
+		displayFolder: Casualties
+		lineageTag: 5292427e-a152-589c-9c82-cc50db9c83ce
+
+	measure 'Fatalities' = SUM ( fact_casualties[is_fatal] )
+		formatString: #,0
+		displayFolder: Casualties
+		lineageTag: da5b3090-8566-5253-af77-d53107ce1547
+
+	measure 'KSI Casualties (adj)' = SUM ( fact_casualties[ksi_adjusted] )
+		formatString: #,0
+		displayFolder: Casualties
+		lineageTag: e150d5d4-b442-56fc-96c2-37aa333198e8
+
+	measure 'Casualty KSI Rate (adj)' = DIVIDE ( [KSI Casualties (adj)], [Casualties] )
+		formatString: 0.0%
+		displayFolder: Casualties
+		lineageTag: 4442e13b-c69e-5671-9f30-a88c162ca43f
+
+	measure 'Deaths per 1,000 Casualties' = DIVIDE ( [Fatalities], [Casualties] ) * 1000
+		formatString: 0.0
+		displayFolder: Casualties
+		lineageTag: 70ee93e9-1ae2-577e-bb09-772f060a3fe9
+
+	measure 'Share of Casualties' = DIVIDE ( [Casualties], CALCULATE ( [Casualties], ALLSELECTED ( fact_casualties[road_user] ) ) )
+		formatString: 0.0%
+		displayFolder: Casualties
+		lineageTag: 8d6c6a1c-ccd1-5e59-a282-bc2c9e345e0e
+
+	measure 'Share of Fatalities' = DIVIDE ( [Fatalities], CALCULATE ( [Fatalities], ALLSELECTED ( fact_casualties[road_user] ) ) )
+		formatString: 0.0%
+		displayFolder: Casualties
+		lineageTag: 3ca72d9e-ef7c-5854-954e-b6e355fd701a
+
+	column collision_index
+		dataType: string
+		isHidden
+		lineageTag: 006343bb-8bda-5bcb-ad1e-c0df10accbe8
+		summarizeBy: none
+		sourceColumn: collision_index
+
+		annotation SummarizationSetBy = Automatic
+
+	column vehicle_reference
+		dataType: int64
+		formatString: 0
+		isHidden
+		lineageTag: d6f7d144-1860-5037-8dd4-73aad798e96e
+		summarizeBy: sum
+		sourceColumn: vehicle_reference
+
+		annotation SummarizationSetBy = Automatic
+
+	column casualty_reference
+		dataType: int64
+		formatString: 0
+		isHidden
+		lineageTag: c8ea54f5-ae42-50d9-83b9-8c9e73353c59
+		summarizeBy: sum
+		sourceColumn: casualty_reference
+
+		annotation SummarizationSetBy = Automatic
+
+	column casualty_class
+		dataType: string
+		lineageTag: 02eee6f7-96ce-53f4-9a13-b5c68ecf7608
+		summarizeBy: none
+		sourceColumn: casualty_class
+
+		annotation SummarizationSetBy = Automatic
+
+	column sex
+		dataType: string
+		lineageTag: 55689d94-9b62-5495-b1c0-710ebfa820fd
+		summarizeBy: none
+		sourceColumn: sex
+
+		annotation SummarizationSetBy = Automatic
+
+	column age
+		dataType: double
+		formatString: 0.##
+		lineageTag: 4710a49a-536c-5564-9e1f-09b2b402158a
+		summarizeBy: none
+		sourceColumn: age
+
+		annotation SummarizationSetBy = Automatic
+
+	column age_group
+		dataType: string
+		lineageTag: af750785-a64a-5c7e-8b77-550f150c42c1
+		summarizeBy: none
+		sourceColumn: age_group
+
+		annotation SummarizationSetBy = Automatic
+
+	column casualty_type
+		dataType: string
+		lineageTag: dd51e288-8742-59c9-bf21-1e5ec61c8aed
+		summarizeBy: none
+		sourceColumn: casualty_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column road_user
+		dataType: string
+		lineageTag: 855859a2-d4c8-53cb-9340-35390e768953
+		summarizeBy: none
+		sourceColumn: road_user
+
+		annotation SummarizationSetBy = Automatic
+
+	column severity
+		dataType: string
+		lineageTag: 9f0f1c04-ecbb-5918-825a-0ee9bc251150
+		summarizeBy: none
+		sourceColumn: severity
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_fatal
+		dataType: int64
+		formatString: 0
+		isHidden
+		lineageTag: a4e56ad8-0a03-5569-9f76-36cc5fdf4e62
+		summarizeBy: none
+		sourceColumn: is_fatal
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_serious
+		dataType: int64
+		formatString: 0
+		isHidden
+		lineageTag: 3c9bf79d-8c65-52e7-9edf-b8a0f01089ee
+		summarizeBy: none
+		sourceColumn: is_serious
+
+		annotation SummarizationSetBy = Automatic
+
+	column adj_serious
+		dataType: double
+		formatString: 0.##
+		isHidden
+		lineageTag: 6b0d0571-db3e-5833-bce8-4b42db2dba5f
+		summarizeBy: sum
+		sourceColumn: adj_serious
+
+		annotation SummarizationSetBy = Automatic
+
+	column ksi_adjusted
+		dataType: double
+		formatString: 0.##
+		isHidden
+		lineageTag: 172c3d4f-03bc-58ec-8c0e-646b7ad75253
+		summarizeBy: sum
+		sourceColumn: ksi_adjusted
+
+		annotation SummarizationSetBy = Automatic
+
+	column imd_decile
+		dataType: double
+		formatString: 0.##
+		lineageTag: e33cc29a-130c-5f70-a60b-3a72425b5add
+		summarizeBy: none
+		sourceColumn: imd_decile
+
+		annotation SummarizationSetBy = Automatic
+
+	column injury_based_reporting
+		dataType: int64
+		formatString: 0
+		lineageTag: ac4df5ea-0696-5fc1-8e68-a3229d034164
+		summarizeBy: sum
+		sourceColumn: injury_based_reporting
+
+		annotation SummarizationSetBy = Automatic
+
+	partition fact_casualties = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(DataFolder & "fact_casualties.csv"), [Delimiter=",", Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
+				    Headers = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    Typed = Table.TransformColumnTypes(Headers, {{"collision_index", type text}, {"vehicle_reference", Int64.Type}, {"casualty_reference", Int64.Type}, {"casualty_class", type text}, {"sex", type text}, {"age", type number}, {"age_group", type text}, {"casualty_type", type text}, {"road_user", type text}, {"severity", type text}, {"is_fatal", Int64.Type}, {"is_serious", Int64.Type}, {"adj_serious", type number}, {"ksi_adjusted", type number}, {"imd_decile", type number}, {"injury_based_reporting", Int64.Type}}, "en-US")
+				in
+				    Typed
+
+	annotation PBI_ResultType = Table

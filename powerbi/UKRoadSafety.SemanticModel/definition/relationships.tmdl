@@ -1,0 +1,11 @@
+relationship 5ac61a69-f499-585e-8385-0e084a9cdd04
+	fromColumn: fact_collisions.date
+	toColumn: dim_date.date
+
+relationship 6eb365dc-501b-54d3-bcc1-000b8cb9c937
+	fromColumn: fact_casualties.collision_index
+	toColumn: fact_collisions.collision_index
+
+relationship f5a31472-956d-5d1f-b915-e61958662cde
+	fromColumn: fact_vehicles.collision_index
+	toColumn: fact_collisions.collision_index

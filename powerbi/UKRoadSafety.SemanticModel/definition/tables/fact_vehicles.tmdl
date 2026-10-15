@@ -1,0 +1,153 @@
+table fact_vehicles
+	lineageTag: 61e352fc-c4e4-597b-a100-6d43141d647e
+
+	measure 'Vehicles' = COUNTROWS ( fact_vehicles )
+		formatString: #,0
+		displayFolder: Vehicles
+		lineageTag: 9384b257-a671-59e3-b2bd-175f01b38dbb
+
+	measure 'Driver Collision KSI Rate (adj)' =
+			AVERAGEX ( FILTER ( fact_vehicles, fact_vehicles[is_motor_vehicle] = 1 ),
+			    RELATED ( fact_collisions[ksi_adjusted] ) )
+		formatString: 0.0%
+		displayFolder: Vehicles
+		lineageTag: c8a2c191-5c06-5adb-8d83-d704a2c3a584
+
+	column collision_index
+		dataType: string
+		isHidden
+		lineageTag: 90a945ad-4225-5a69-9bab-73f98bd498c4
+		summarizeBy: none
+		sourceColumn: collision_index
+
+		annotation SummarizationSetBy = Automatic
+
+	column vehicle_reference
+		dataType: int64
+		formatString: 0
+		isHidden
+		lineageTag: f5cab780-6a1b-5c15-93b4-dca950d0dc58
+		summarizeBy: sum
+		sourceColumn: vehicle_reference
+
+		annotation SummarizationSetBy = Automatic
+
+	column vehicle_type
+		dataType: string
+		lineageTag: f347e4cc-4ed6-5072-874a-824d3cd37606
+		summarizeBy: none
+		sourceColumn: vehicle_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column vehicle_group
+		dataType: string
+		lineageTag: 0127e92b-c52b-533d-a07f-656cc01bea02
+		summarizeBy: none
+		sourceColumn: vehicle_group
+
+		annotation SummarizationSetBy = Automatic
+
+	column vehicle_manoeuvre
+		dataType: string
+		lineageTag: 9b27d64e-d0b7-5f16-bfd4-2218e535cc59
+		summarizeBy: none
+		sourceColumn: vehicle_manoeuvre
+
+		annotation SummarizationSetBy = Automatic
+
+	column journey_purpose
+		dataType: string
+		lineageTag: e406932f-9ef0-50d5-93f1-ad674d6214f2
+		summarizeBy: none
+		sourceColumn: journey_purpose
+
+		annotation SummarizationSetBy = Automatic
+
+	column first_point_of_impact
+		dataType: string
+		lineageTag: 73c91bbc-a8e4-5b97-bf0e-6a68ae36628d
+		summarizeBy: none
+		sourceColumn: first_point_of_impact
+
+		annotation SummarizationSetBy = Automatic
+
+	column left_carriageway
+		dataType: string
+		lineageTag: 43022f99-1a0b-59ba-b199-631525fb5269
+		summarizeBy: none
+		sourceColumn: left_carriageway
+
+		annotation SummarizationSetBy = Automatic
+
+	column sex_of_driver
+		dataType: string
+		lineageTag: 019daca3-4512-59a8-88bf-164586534847
+		summarizeBy: none
+		sourceColumn: sex_of_driver
+
+		annotation SummarizationSetBy = Automatic
+
+	column age_of_driver
+		dataType: double
+		formatString: 0.##
+		lineageTag: c349ed12-a45b-5202-ae81-732360897298
+		summarizeBy: none
+		sourceColumn: age_of_driver
+
+		annotation SummarizationSetBy = Automatic
+
+	column driver_age_group
+		dataType: string
+		lineageTag: 54239122-24e2-55d8-8c5a-6c3274852a3a
+		summarizeBy: none
+		sourceColumn: driver_age_group
+
+		annotation SummarizationSetBy = Automatic
+
+	column propulsion
+		dataType: string
+		lineageTag: c243f33a-eea2-560e-819b-a79a7b208d9f
+		summarizeBy: none
+		sourceColumn: propulsion
+
+		annotation SummarizationSetBy = Automatic
+
+	column age_of_vehicle
+		dataType: double
+		formatString: 0.##
+		lineageTag: cc3913a9-5431-5978-b577-1468e376d9e3
+		summarizeBy: none
+		sourceColumn: age_of_vehicle
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_escooter
+		dataType: int64
+		formatString: 0
+		lineageTag: 8ced3950-018b-5636-8771-f87b69dcdb67
+		summarizeBy: none
+		sourceColumn: is_escooter
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_motor_vehicle
+		dataType: int64
+		formatString: 0
+		lineageTag: 216487d1-2093-5644-98b0-05b9601522f2
+		summarizeBy: none
+		sourceColumn: is_motor_vehicle
+
+		annotation SummarizationSetBy = Automatic
+
+	partition fact_vehicles = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(DataFolder & "fact_vehicles.csv"), [Delimiter=",", Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
+				    Headers = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    Typed = Table.TransformColumnTypes(Headers, {{"collision_index", type text}, {"vehicle_reference", Int64.Type}, {"vehicle_type", type text}, {"vehicle_group", type text}, {"vehicle_manoeuvre", type text}, {"journey_purpose", type text}, {"first_point_of_impact", type text}, {"left_carriageway", type text}, {"sex_of_driver", type text}, {"age_of_driver", type number}, {"driver_age_group", type text}, {"propulsion", type text}, {"age_of_vehicle", type number}, {"is_escooter", Int64.Type}, {"is_motor_vehicle", Int64.Type}}, "en-US")
+				in
+				    Typed
+
+	annotation PBI_ResultType = Table

@@ -1,0 +1,415 @@
+table fact_collisions
+	lineageTag: bc06f0ee-dcd4-501b-a9ed-db4e940cb53c
+
+	measure 'Collisions' = COUNTROWS ( fact_collisions )
+		formatString: #,0
+		displayFolder: Collisions
+		lineageTag: 42dbe34d-2a7b-56ce-9522-f96c06bda673
+
+	measure 'Fatal Collisions' = SUM ( fact_collisions[is_fatal] )
+		formatString: #,0
+		displayFolder: Collisions
+		lineageTag: af0c7322-2d3b-544e-9514-d101b83ab8a1
+
+	measure 'KSI Collisions (adj)' = SUM ( fact_collisions[ksi_adjusted] )
+		formatString: #,0
+		displayFolder: Collisions
+		lineageTag: e47cfb85-5430-5339-bc24-0017fe70d9be
+
+	measure 'KSI Rate (adj)' = DIVIDE ( [KSI Collisions (adj)], [Collisions] )
+		formatString: 0.0%
+		displayFolder: Collisions
+		lineageTag: 29e55f42-c29a-5431-9802-a65c305280ab
+
+	measure 'KSI Rate (recorded)' = DIVIDE ( CALCULATE ( [Collisions], fact_collisions[severity] <> "Slight" ), [Collisions] )
+		formatString: 0.0%
+		displayFolder: Collisions
+		lineageTag: fc1a7236-c621-56c7-9028-305ccbcaa8e6
+
+	measure 'Fatal per 1,000 Collisions' = DIVIDE ( [Fatal Collisions], [Collisions] ) * 1000
+		formatString: 0.0
+		displayFolder: Collisions
+		lineageTag: dabcfbb1-210a-5d95-a5c7-699345b573c2
+
+	measure 'Injury-based Reporting %' = DIVIDE ( CALCULATE ( [Collisions], fact_collisions[reporting_system] = "Injury-based (CRASH)" ), [Collisions] )
+		formatString: 0.0%
+		displayFolder: Data quality
+		lineageTag: 5174962e-27d5-5f01-a53c-c4a50cbbd822
+
+	measure 'Collisions YoY %' =
+			VAR cur = [Collisions]
+			VAR prev = CALCULATE ( [Collisions], DATEADD ( dim_date[date], -1, YEAR ) )
+			RETURN IF ( NOT ISBLANK ( prev ), DIVIDE ( cur - prev, prev ) )
+		formatString: +0.0%;-0.0%;0.0%
+		displayFolder: Collisions
+		lineageTag: 42b8a23a-4c1e-512f-b158-f33381c139c7
+
+	column collision_index
+		dataType: string
+		isHidden
+		lineageTag: c410f19a-a4e0-5337-ac83-41de546a7e33
+		summarizeBy: none
+		sourceColumn: collision_index
+
+		annotation SummarizationSetBy = Automatic
+
+	column date
+		dataType: dateTime
+		formatString: dd/mm/yyyy
+		lineageTag: 41a72c80-9907-56f5-a19e-c511b1ab10a2
+		summarizeBy: none
+		sourceColumn: date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column hour
+		dataType: int64
+		formatString: 0
+		lineageTag: 1e1a2e17-efc2-5379-8ce3-6a7fe6f83451
+		summarizeBy: none
+		sourceColumn: hour
+
+		annotation SummarizationSetBy = Automatic
+
+	column time_band
+		dataType: string
+		lineageTag: 8e8039ad-39ae-504e-9640-5d40210e7145
+		summarizeBy: none
+		sourceColumn: time_band
+
+		annotation SummarizationSetBy = Automatic
+
+	column severity
+		dataType: string
+		lineageTag: e506e2cb-2e1c-5f70-9cd3-b4b0e57d4a01
+		summarizeBy: none
+		sourceColumn: severity
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_fatal
+		dataType: int64
+		formatString: 0
+		isHidden
+		lineageTag: a1dc0c02-fd9c-5265-8ca5-510761dff283
+		summarizeBy: none
+		sourceColumn: is_fatal
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_serious
+		dataType: int64
+		formatString: 0
+		isHidden
+		lineageTag: 1c723a85-3866-5259-8871-c6e0cd1019c6
+		summarizeBy: none
+		sourceColumn: is_serious
+
+		annotation SummarizationSetBy = Automatic
+
+	column adj_serious
+		dataType: double
+		formatString: 0.##
+		isHidden
+		lineageTag: 83c64813-8e7c-5661-8c3d-4a7c3f010107
+		summarizeBy: sum
+		sourceColumn: adj_serious
+
+		annotation SummarizationSetBy = Automatic
+
+	column ksi_adjusted
+		dataType: double
+		formatString: 0.##
+		isHidden
+		lineageTag: 7e615f33-f12c-5e2b-8a3d-7c3224054b9b
+		summarizeBy: sum
+		sourceColumn: ksi_adjusted
+
+		annotation SummarizationSetBy = Automatic
+
+	column reporting_system
+		dataType: string
+		lineageTag: ec3e2323-16e3-59d2-91c4-c3fa643600ee
+		summarizeBy: none
+		sourceColumn: reporting_system
+
+		annotation SummarizationSetBy = Automatic
+
+	column number_of_vehicles
+		dataType: int64
+		formatString: 0
+		lineageTag: a89c5f87-400d-5dfd-82a9-065d23672ee1
+		summarizeBy: none
+		sourceColumn: number_of_vehicles
+
+		annotation SummarizationSetBy = Automatic
+
+	column number_of_casualties
+		dataType: int64
+		formatString: 0
+		lineageTag: a3c56141-b075-532c-8d70-55c5cafb741c
+		summarizeBy: none
+		sourceColumn: number_of_casualties
+
+		annotation SummarizationSetBy = Automatic
+
+	column country
+		dataType: string
+		lineageTag: 64918219-f19b-51a3-b5f4-e07197a2bb03
+		summarizeBy: none
+		sourceColumn: country
+
+		annotation SummarizationSetBy = Automatic
+
+	column police_force
+		dataType: string
+		lineageTag: 1929aceb-230e-537d-a904-d5ce9a45ca8f
+		summarizeBy: none
+		sourceColumn: police_force
+
+		annotation SummarizationSetBy = Automatic
+
+	column local_authority
+		dataType: string
+		lineageTag: 0275cb84-5a03-50b6-a347-782f305a647b
+		summarizeBy: none
+		sourceColumn: local_authority
+
+		annotation SummarizationSetBy = Automatic
+
+	column urban_rural
+		dataType: string
+		lineageTag: 2255239b-2461-5088-a247-598c7662bae1
+		summarizeBy: none
+		sourceColumn: urban_rural
+
+		annotation SummarizationSetBy = Automatic
+
+	column road_class
+		dataType: string
+		lineageTag: ee4693bb-80ad-56b7-bf47-8702fa460f1d
+		summarizeBy: none
+		sourceColumn: road_class
+
+		annotation SummarizationSetBy = Automatic
+
+	column road_type
+		dataType: string
+		lineageTag: 67ba4957-cf22-5233-afdf-a9118640993e
+		summarizeBy: none
+		sourceColumn: road_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column speed_limit
+		dataType: double
+		formatString: 0.##
+		lineageTag: 0c735170-8ab1-5dd5-892d-166ac320c9c6
+		summarizeBy: none
+		sourceColumn: speed_limit
+
+		annotation SummarizationSetBy = Automatic
+
+	column junction_detail
+		dataType: string
+		lineageTag: 8149af49-2c8d-5b54-9ac6-a2e5fd202844
+		summarizeBy: none
+		sourceColumn: junction_detail
+
+		annotation SummarizationSetBy = Automatic
+
+	column junction_control
+		dataType: string
+		lineageTag: cd5f468b-81ca-5bb8-9d70-17e8426af448
+		summarizeBy: none
+		sourceColumn: junction_control
+
+		annotation SummarizationSetBy = Automatic
+
+	column pedestrian_crossing
+		dataType: string
+		lineageTag: ce5ae7b3-9a5d-5119-b456-93b7334c823b
+		summarizeBy: none
+		sourceColumn: pedestrian_crossing
+
+		annotation SummarizationSetBy = Automatic
+
+	column light_conditions
+		dataType: string
+		lineageTag: b99a01b9-7bc6-5e8e-91b1-cc6da0822723
+		summarizeBy: none
+		sourceColumn: light_conditions
+
+		annotation SummarizationSetBy = Automatic
+
+	column light
+		dataType: string
+		lineageTag: dcf33c7d-3ffd-55f8-9814-51f2e439a9e0
+		summarizeBy: none
+		sourceColumn: light
+
+		annotation SummarizationSetBy = Automatic
+
+	column weather_conditions
+		dataType: string
+		lineageTag: eaa07cf6-45f0-530e-9cee-fac56f2cc946
+		summarizeBy: none
+		sourceColumn: weather_conditions
+
+		annotation SummarizationSetBy = Automatic
+
+	column weather
+		dataType: string
+		lineageTag: ceca710e-d460-5ffe-ba45-8a556f8196dc
+		summarizeBy: none
+		sourceColumn: weather
+
+		annotation SummarizationSetBy = Automatic
+
+	column high_winds
+		dataType: int64
+		formatString: 0
+		lineageTag: efda1abc-b521-51ba-b782-eb4016422d1e
+		summarizeBy: none
+		sourceColumn: high_winds
+
+		annotation SummarizationSetBy = Automatic
+
+	column road_surface
+		dataType: string
+		lineageTag: 5c63103a-3fd3-5238-a587-31bc7a699e78
+		summarizeBy: none
+		sourceColumn: road_surface
+
+		annotation SummarizationSetBy = Automatic
+
+	column trunk_road
+		dataType: string
+		lineageTag: 8a1c97a5-6b5b-5c4b-b086-9b8976d7300f
+		summarizeBy: none
+		sourceColumn: trunk_road
+
+		annotation SummarizationSetBy = Automatic
+
+	column latitude
+		dataType: double
+		formatString: 0.##
+		isHidden
+		lineageTag: 328114d3-44ca-5f7f-82a2-a7f8e9ef1382
+		summarizeBy: sum
+		sourceColumn: latitude
+
+		annotation SummarizationSetBy = Automatic
+
+	column longitude
+		dataType: double
+		formatString: 0.##
+		isHidden
+		lineageTag: d23b4e46-8476-5663-ab37-a3ee7f0dadf7
+		summarizeBy: sum
+		sourceColumn: longitude
+
+		annotation SummarizationSetBy = Automatic
+
+	column speed_limit_label
+		dataType: string
+		lineageTag: 2d301f9f-73b7-56b0-95e0-64c463f8cc9e
+		summarizeBy: none
+		sourceColumn: speed_limit_label
+
+		annotation SummarizationSetBy = Automatic
+
+	column involves_motorcycle
+		dataType: int64
+		formatString: 0
+		lineageTag: 3e1ec349-f984-55aa-92a1-fc4c7e3fee4c
+		summarizeBy: none
+		sourceColumn: involves_motorcycle
+
+		annotation SummarizationSetBy = Automatic
+
+	column involves_pedal_cycle
+		dataType: int64
+		formatString: 0
+		lineageTag: 2b449d60-fef5-5269-9f9b-1e5548fc1692
+		summarizeBy: none
+		sourceColumn: involves_pedal_cycle
+
+		annotation SummarizationSetBy = Automatic
+
+	column involves_hgv
+		dataType: int64
+		formatString: 0
+		lineageTag: 693615a2-ff70-553f-8583-a3dd646f1920
+		summarizeBy: none
+		sourceColumn: involves_hgv
+
+		annotation SummarizationSetBy = Automatic
+
+	column involves_bus
+		dataType: int64
+		formatString: 0
+		lineageTag: f4660757-b6fc-50f8-a658-2f01f6462028
+		summarizeBy: none
+		sourceColumn: involves_bus
+
+		annotation SummarizationSetBy = Automatic
+
+	column involves_escooter
+		dataType: int64
+		formatString: 0
+		lineageTag: 0c53cfff-52e9-5a9f-a688-787dc8d41998
+		summarizeBy: none
+		sourceColumn: involves_escooter
+
+		annotation SummarizationSetBy = Automatic
+
+	column young_driver
+		dataType: int64
+		formatString: 0
+		lineageTag: 72e8a761-56a8-5314-96b8-f7a76cf1a571
+		summarizeBy: sum
+		sourceColumn: young_driver
+
+		annotation SummarizationSetBy = Automatic
+
+	column older_driver
+		dataType: int64
+		formatString: 0
+		lineageTag: 6312b4f4-fc0d-5a0b-afe9-d39e1e3d6e67
+		summarizeBy: sum
+		sourceColumn: older_driver
+
+		annotation SummarizationSetBy = Automatic
+
+	column driver_left_carriageway
+		dataType: int64
+		formatString: 0
+		lineageTag: 81a23324-3f51-502d-8731-182b33aa9a9d
+		summarizeBy: sum
+		sourceColumn: driver_left_carriageway
+
+		annotation SummarizationSetBy = Automatic
+
+	column pedestrian_casualty
+		dataType: int64
+		formatString: 0
+		lineageTag: ceddb2d8-5674-5554-8197-2c81c1924dd0
+		summarizeBy: sum
+		sourceColumn: pedestrian_casualty
+
+		annotation SummarizationSetBy = Automatic
+
+	partition fact_collisions = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(DataFolder & "fact_collisions.csv"), [Delimiter=",", Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
+				    Headers = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    Typed = Table.TransformColumnTypes(Headers, {{"collision_index", type text}, {"date", type date}, {"hour", Int64.Type}, {"time_band", type text}, {"severity", type text}, {"is_fatal", Int64.Type}, {"is_serious", Int64.Type}, {"adj_serious", type number}, {"ksi_adjusted", type number}, {"reporting_system", type text}, {"number_of_vehicles", Int64.Type}, {"number_of_casualties", Int64.Type}, {"country", type text}, {"police_force", type text}, {"local_authority", type text}, {"urban_rural", type text}, {"road_class", type text}, {"road_type", type text}, {"speed_limit", type number}, {"junction_detail", type text}, {"junction_control", type text}, {"pedestrian_crossing", type text}, {"light_conditions", type text}, {"light", type text}, {"weather_conditions", type text}, {"weather", type text}, {"high_winds", Int64.Type}, {"road_surface", type text}, {"trunk_road", type text}, {"latitude", type number}, {"longitude", type number}, {"speed_limit_label", type text}, {"involves_motorcycle", Int64.Type}, {"involves_pedal_cycle", Int64.Type}, {"involves_hgv", Int64.Type}, {"involves_bus", Int64.Type}, {"involves_escooter", Int64.Type}, {"young_driver", Int64.Type}, {"older_driver", Int64.Type}, {"driver_left_carriageway", Int64.Type}, {"pedestrian_casualty", Int64.Type}}, "en-US")
+				in
+				    Typed
+
+	annotation PBI_ResultType = Table

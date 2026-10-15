@@ -1,0 +1,17 @@
+model Model
+	culture: en-GB
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	discourageImplicitMeasures
+	sourceQueryCulture: en-GB
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation __PBI_TimeIntelligenceEnabled = 0
+
+annotation PBI_QueryOrder = ["DataFolder", "dim_date", "fact_collisions", "fact_casualties", "fact_vehicles"]
+
+ref table dim_date
+ref table fact_collisions
+ref table fact_casualties
+ref table fact_vehicles

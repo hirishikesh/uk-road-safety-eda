@@ -1,0 +1,352 @@
+{
+  "crash_share_first": 49.6,
+  "crash_share_last": 86.5,
+  "n_collisions": 513801,
+  "n_casualties": 652821,
+  "n_vehicles": 937265,
+  "n_fatal_collisions": 7553,
+  "n_fatalities": 8033,
+  "ksi_rate_collisions": 25.3,
+  "ksi_rate_casualties": 21.9,
+  "ksi_casualties_adjusted": 143090,
+  "ksi_raw_by_year": {
+    "2021": 22.5,
+    "2022": 23.5,
+    "2023": 23.9,
+    "2024": 24.8,
+    "2025": 26.2
+  },
+  "ksi_adj_by_year": {
+    "2021": 23.9,
+    "2022": 24.7,
+    "2023": 25.1,
+    "2024": 26.0,
+    "2025": 26.8
+  },
+  "annual": {
+    "2021": {
+      "Collisions": 101087,
+      "Casualties": 128209,
+      "Fatalities": 1558,
+      "KSI casualties (adjusted)": 26397
+    },
+    "2022": {
+      "Collisions": 106004,
+      "Casualties": 135480,
+      "Fatalities": 1711,
+      "KSI casualties (adjusted)": 28926
+    },
+    "2023": {
+      "Collisions": 104258,
+      "Casualties": 132977,
+      "Fatalities": 1624,
+      "KSI casualties (adjusted)": 28973
+    },
+    "2024": {
+      "Collisions": 100927,
+      "Casualties": 128272,
+      "Fatalities": 1602,
+      "KSI casualties (adjusted)": 28876
+    },
+    "2025": {
+      "Collisions": 101525,
+      "Casualties": 127883,
+      "Fatalities": 1538,
+      "KSI casualties (adjusted)": 29918
+    }
+  },
+  "peak_month": "Nov",
+  "low_month": "Feb",
+  "peak_slot": "Friday 15:00-15:59",
+  "fatal_per_1000_by_hour_max": [
+    4,
+    41.1
+  ],
+  "fatal_per_1000_by_hour_min": [
+    8,
+    7.9
+  ],
+  "ksi_by_speed": {
+    "20 mph": 20.4,
+    "30 mph": 23.6,
+    "40 mph": 26.8,
+    "50 mph": 29.7,
+    "60 mph": 36.5,
+    "70 mph": 25.4
+  },
+  "fatal_by_speed": {
+    "20 mph": 4.7,
+    "30 mph": 8.7,
+    "40 mph": 18.0,
+    "50 mph": 28.9,
+    "60 mph": 38.4,
+    "70 mph": 33.7
+  },
+  "ksi_urban": 22.5,
+  "ksi_rural": 30.9,
+  "fatal_urban": 8.0,
+  "fatal_rural": 28.3,
+  "rural_share_collisions": 32.8,
+  "rural_share_fatal": 63.2,
+  "fatal_by_light": {
+    "Dark - lighting unknown": 15.9,
+    "Dark - lit": 14.7,
+    "Dark - unlit": 45.5,
+    "Daylight": 12.1
+  },
+  "ksi_by_weather": {
+    "Fine": 25.9,
+    "Fog or mist": 29.5,
+    "Rain": 25.3,
+    "Snow": 23.4
+  },
+  "fine_weather_share": 81.4,
+  "road_users": {
+    "Bus / minibus occupant": {
+      "n": 11524,
+      "ksi_rate": 14.2,
+      "fatal_per_1000": 2.3,
+      "share_casualties": 1.8,
+      "share_ksi": 1.1,
+      "share_fatal": 0.3
+    },
+    "Car occupant": {
+      "n": 354843,
+      "ksi_rate": 15.5,
+      "fatal_per_1000": 9.9,
+      "share_casualties": 54.7,
+      "share_ksi": 38.4,
+      "share_fatal": 43.7
+    },
+    "Cyclist": {
+      "n": 77741,
+      "ksi_rate": 26.3,
+      "fatal_per_1000": 5.8,
+      "share_casualties": 12.0,
+      "share_ksi": 14.3,
+      "share_fatal": 5.6
+    },
+    "E-scooter rider": {
+      "n": 5719,
+      "ksi_rate": 32.1,
+      "fatal_per_1000": 7.3,
+      "share_casualties": 0.9,
+      "share_ksi": 1.3,
+      "share_fatal": 0.5
+    },
+    "HGV occupant": {
+      "n": 3815,
+      "ksi_rate": 22.1,
+      "fatal_per_1000": 22.0,
+      "share_casualties": 0.6,
+      "share_ksi": 0.6,
+      "share_fatal": 1.0
+    },
+    "Motorcyclist": {
+      "n": 81166,
+      "ksi_rate": 35.4,
+      "fatal_per_1000": 21.0,
+      "share_casualties": 12.5,
+      "share_ksi": 20.1,
+      "share_fatal": 21.2
+    },
+    "Pedestrian": {
+      "n": 94398,
+      "ksi_rate": 32.0,
+      "fatal_per_1000": 20.4,
+      "share_casualties": 14.6,
+      "share_ksi": 21.1,
+      "share_fatal": 24.0
+    },
+    "Van occupant": {
+      "n": 19135,
+      "ksi_rate": 15.8,
+      "fatal_per_1000": 9.7,
+      "share_casualties": 3.0,
+      "share_ksi": 2.1,
+      "share_fatal": 2.3
+    }
+  },
+  "vulnerable_share_casualties": 40.0,
+  "vulnerable_share_fatal": 51.3,
+  "casualty_age": {
+    "0-16": {
+      "n": 65202,
+      "ksi_rate": 20.9,
+      "fatal_per_1000": 4.5
+    },
+    "17-24": {
+      "n": 116421,
+      "ksi_rate": 22.4,
+      "fatal_per_1000": 11.0
+    },
+    "25-34": {
+      "n": 134600,
+      "ksi_rate": 18.9,
+      "fatal_per_1000": 9.5
+    },
+    "35-44": {
+      "n": 104568,
+      "ksi_rate": 18.9,
+      "fatal_per_1000": 9.9
+    },
+    "45-54": {
+      "n": 82744,
+      "ksi_rate": 21.4,
+      "fatal_per_1000": 11.4
+    },
+    "55-64": {
+      "n": 67470,
+      "ksi_rate": 25.8,
+      "fatal_per_1000": 15.5
+    },
+    "65-74": {
+      "n": 35664,
+      "ksi_rate": 30.2,
+      "fatal_per_1000": 22.6
+    },
+    "75+": {
+      "n": 32046,
+      "ksi_rate": 34.9,
+      "fatal_per_1000": 42.3
+    }
+  },
+  "driver_age": {
+    "17-24": {
+      "n": 113909,
+      "ksi_rate": 26.4,
+      "fatal_per_1000": 16.3
+    },
+    "25-34": {
+      "n": 167802,
+      "ksi_rate": 22.8,
+      "fatal_per_1000": 14.7
+    },
+    "35-44": {
+      "n": 144004,
+      "ksi_rate": 23.2,
+      "fatal_per_1000": 14.9
+    },
+    "45-54": {
+      "n": 115546,
+      "ksi_rate": 24.5,
+      "fatal_per_1000": 16.3
+    },
+    "55-64": {
+      "n": 91023,
+      "ksi_rate": 27.8,
+      "fatal_per_1000": 20.5
+    },
+    "65-74": {
+      "n": 42687,
+      "ksi_rate": 29.7,
+      "fatal_per_1000": 21.0
+    },
+    "75+": {
+      "n": 32490,
+      "ksi_rate": 31.6,
+      "fatal_per_1000": 28.8
+    }
+  },
+  "escooter": {
+    "2021": {
+      "casualties": 1102,
+      "fatalities": 10,
+      "ksi_adjusted": 331.2,
+      "ksi_rate_%": 30.1
+    },
+    "2022": {
+      "casualties": 1154,
+      "fatalities": 11,
+      "ksi_adjusted": 355.2,
+      "ksi_rate_%": 30.8
+    },
+    "2023": {
+      "casualties": 1117,
+      "fatalities": 6,
+      "ksi_adjusted": 337.2,
+      "ksi_rate_%": 30.2
+    },
+    "2024": {
+      "casualties": 1119,
+      "fatalities": 5,
+      "ksi_adjusted": 365.1,
+      "ksi_rate_%": 32.6
+    },
+    "2025": {
+      "casualties": 1227,
+      "fatalities": 10,
+      "ksi_adjusted": 445.9,
+      "ksi_rate_%": 36.3
+    }
+  },
+  "force_highest": "North Wales",
+  "force_lowest": "Metropolitan Police",
+  "force_range": [
+    16.4,
+    44.5
+  ],
+  "cramers_v": {
+    "Urban / rural": 0.105,
+    "Motorcycle involved": 0.1,
+    "Speed limit": 0.09,
+    "Number of vehicles": 0.088,
+    "Pedestrian hit": 0.082,
+    "Light conditions": 0.059,
+    "HGV involved": 0.057,
+    "Road type": 0.047,
+    "Time of day": 0.046,
+    "Driver 75+": 0.041,
+    "Pedal cycle involved": 0.038,
+    "Junction type": 0.034,
+    "Day of week": 0.026,
+    "Weather": 0.016,
+    "Driver 17-24": 0.012,
+    "Road surface": 0.011
+  },
+  "model_n": 513706,
+  "odds_ratios": {
+    "Speed limit: 20 mph": 0.74,
+    "Speed limit: 40 mph": 1.36,
+    "Speed limit: 50 mph": 1.55,
+    "Speed limit: 60 mph": 1.81,
+    "Speed limit: 70 mph": 1.52,
+    "Area: Rural": 1.29,
+    "Light: Dark - lit": 1.12,
+    "Light: Dark - unlit": 1.11,
+    "Weather: Fog or mist": 0.95,
+    "Weather: Other / unknown": 0.73,
+    "Weather: Rain": 0.92,
+    "Weather: Snow": 0.96,
+    "Surface: Ice or snow": 0.89,
+    "Surface: Other / unknown": 0.51,
+    "Surface: Wet": 1.07,
+    "Road type: Dual carriageway": 0.82,
+    "Road type: One way street": 0.67,
+    "Road type: Other / unknown": 0.41,
+    "Road type: Roundabout": 0.69,
+    "Road type: Slip road": 0.66,
+    "Junction: At junction": 0.99,
+    "Junction: Unknown": 0.62,
+    "Time: 00-05 Night": 1.44,
+    "Time: 06-09 AM peak": 0.93,
+    "Time: 16-19 PM peak": 0.99,
+    "Time: 20-23 Evening": 1.21,
+    "Vehicles involved: 1": 1.63,
+    "Vehicles involved: 3+": 1.42,
+    "Year: 2022": 1.04,
+    "Year: 2023": 1.06,
+    "Year: 2024": 1.13,
+    "Year: 2025": 1.17,
+    "Weekend": 1.14,
+    "Pedestrian hit": 2.03,
+    "Motorcycle involved": 2.93,
+    "Pedal cycle involved": 2.49,
+    "HGV involved": 1.33,
+    "Bus involved": 1.31,
+    "E-scooter involved": 2.64,
+    "Driver aged 17-24": 1.06,
+    "Driver aged 75+": 1.6
+  },
+  "holdout_auc": 0.673
+}

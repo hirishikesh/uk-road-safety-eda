@@ -1,0 +1,5 @@
+/// Folder containing the CSVs written by `python -m src.prepare_data` (must end with a slash)
+expression DataFolder = "C:/Users/HIRISHIKESH/projects/uk-road-safety-eda/data/powerbi/" meta [IsParameterQuery=true, Type="Text", IsParameterQueryRequired=true]
+	lineageTag: 857f5814-df46-5706-a48c-859964e499da
+
+	annotation PBI_ResultType = Text
